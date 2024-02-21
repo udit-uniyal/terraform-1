@@ -25,7 +25,7 @@ jobs:
         run: |
           pwd
           whoami
-       shell: bash
+        shell: bash
 
       - name: Print Env details
         run: echo ${{ github.head_ref }}
