@@ -7,7 +7,7 @@ Gem::Specification.new do |s|
   s.authors       = ['Ajeet Raina', 'GitHub, Inc.']
   s.email         = ['ajeetraina@gmail.com']
   s.homepage      = 'https://collabnix.github.io/terraform/'
-  s.summary       = 'DockerLabs'
+  s.summary   dfdf    = 'DockerLabs'
 
   s.files         = `git ls-files -z`.split("\x0").select do |f|
     f.match(%r{^((_includes|_layouts|_sass|assets)/|(LICENSE|README)((\.(txt|md|markdown)|$)))}i)
