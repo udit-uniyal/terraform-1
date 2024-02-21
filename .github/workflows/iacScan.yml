@@ -1,9 +1,12 @@
 name: Checkov Scan
 
 on:
+  push:
+    branches:
+      - main
   pull_request:
     branches:
-    - "*"
+      - main
 
 jobs:
   checkov_scan:
