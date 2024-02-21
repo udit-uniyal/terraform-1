@@ -11,12 +11,6 @@ on:
 jobs:
   checkov_scan:
     runs-on: ubuntu-latest
-
-    env:
-      CSPM_URL: 5aea-122-161-52-20.ngrok-free.app
-      CSPM_TOKEN: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzA4MzMzNTAwLCJqdGkiOiIwN2Q2NjE4OTUxMTA0ODA4YjI1MzIxN2I4NWQ4MTcwZCIsImlzcyI6Imh0dHA6Ly9sb2NhbGhvc3Q6ODAwMCJ9.lHIWO0UfpefgZ7mzw0LE-rXGl5Mm7bCvPMwwxU9qq2g
-      TENANT_ID: "1"
-
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
@@ -39,7 +33,10 @@ jobs:
       - name: Push report to CSPM panel
         run: |
           curl --location --request POST 'https://${{env.CSPM_URL}}/api/v1/artifact/?tenant_id=${{ env.TENANT_ID }}&data_type=IAC&save_to_s3=false' --header 'Tenant-Id: ${{ env.TENANT_ID }}' --header 'Authorization: Bearer ${{ env.CSPM_TOKEN }}' --form 'file=@"./scan_results.json"'
-
+        env:
+          CSPM_URL: 5aea-122-161-52-20.ngrok-free.app
+          CSPM_TOKEN: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzA4MzMzNTAwLCJqdGkiOiIwN2Q2NjE4OTUxMTA0ODA4YjI1MzIxN2I4NWQ4MTcwZCIsImlzcyI6Imh0dHA6Ly9sb2NhbGhvc3Q6ODAwMCJ9.lHIWO0UfpefgZ7mzw0LE-rXGl5Mm7bCvPMwwxU9qq2g
+          TENANT_ID: "1"
       - name: Remove temporary files
         run: |
           rm scan_results.json
